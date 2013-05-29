@@ -25,13 +25,6 @@ describe Billy::ProxyRequestStub do
       expect(Billy::ProxyRequestStub.new(/http:\/\/.+\.co\.uk/, :method => :get).
         matches?('GET', 'http://example.com')).to_not be
     end
-
-    it 'should match up to but not including query strings' do
-      stub = Billy::ProxyRequestStub.new('http://example.com/foo/bar/')
-      expect(stub.matches?('GET', 'http://example.com/foo/')).to_not be
-      expect(stub.matches?('GET', 'http://example.com/foo/bar/')).to be
-      expect(stub.matches?('GET', 'http://example.com/foo/bar/?baz=bap')).to be
-    end
   end
 
   context "#call (without #and_return)" do
